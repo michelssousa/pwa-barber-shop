@@ -1,5 +1,6 @@
 import tw from 'tailwind-styled-components'
 import React, { Children } from 'react'
+import type { ReactElement } from 'react'
 
 //#region Actions
 
@@ -20,20 +21,27 @@ const Btn = tw.button<{ $full?: boolean }>`
 `
 
 export const ButtonConfirm = tw(Btn)`
-  btn-secondary
+  btn-primary
 `
 export const ButtonCancel = tw(Btn)`
   btn-outline
-  btn-secondary
+  btn-primary
 `
 export const ButtonDelete = tw(Btn)`
   bg-red-600
 `
 export const ButtonFab = tw.button`
+ absolute
+ z-90
+ bottom-10 
+ right-8
  btn 
- btn-sm
- btn-circle 
- btn-secondary
+ btn-circle
+ btn-primary 
+ btn-md
+ drop-shadow-lg
+ hover:animate-bounce 
+ duration-300 
 `
 export const ButtonLoading = tw(Btn)`
  loading
@@ -254,17 +262,17 @@ export const Spacer = tw.p`
 
 export const Wrapper = tw.div`
     bg-gradient-to-tl 
-    from-base-100
-    to-base-100
-    py-16 
+    from-gray-200
+    to-gray-200
     w-screen
     h-screen
-    px-4"
+    px-4
 `
 
 export const Container = tw.div`
  container
  mx-auto
+ bg-black
  my-2
 `
 type ContentProps = {
@@ -272,7 +280,7 @@ type ContentProps = {
 }
 export const Content = ({ children, ...rest }: ContentProps) => (
   <div className="relative flex flex-col overflow-hidden" {...rest}>
-    <div className="w-full p-6 m-auto bg-base-300 rounded-md shadow-md border-top lg:max-w-3xl">
+    <div className="w-full p-6 m-auto bg-base-100 rounded-md shadow-md border-top lg:max-w-3xl">
       {children}
     </div>
   </div>

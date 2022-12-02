@@ -16,7 +16,7 @@ module.exports = {
           neutral: '#3d4451',
         },
       },
-      'light',
+      'winter',
     ],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
