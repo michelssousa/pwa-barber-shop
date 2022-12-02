@@ -1,20 +1,7 @@
 import type { NextPage } from 'next'
 
 import { useSession, signOut } from 'next-auth/react'
-import {
-  Buttons,
-  Wrapper,
-  Container,
-  Row,
-  Column,
-  Left,
-  Right,
-  Center,
-  Icons,
-  Typography,
-  DataInput,
-  Navigation,
-} from '@components/index'
+import * as M from '@components/index'
 
 const Home: NextPage = () => {
   // const { data: session } = useSession()
@@ -24,69 +11,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Wrapper>
-        <Navigation.Navbar
-          navStart={Navigation.NavStartItem.Arrow}
-          hrefBack="/login"
-          title="Reserva de Horario"
-        >
-          <Buttons.link>
-            <Icons.Add />
-          </Buttons.link>
-        </Navigation.Navbar>
-        <Container>
-          <Typography.Title>Home</Typography.Title>
-          <Row>
-            <Typography.P $bold={true}>Michel Testando</Typography.P>
-          </Row>
-          <Row>
-            <Typography.P>Outro Texto</Typography.P>
-          </Row>
-          <Row>
-            <DataInput.Search />
-          </Row>
-          <Row>
-            <DataInput.Input label=" Whats your name?" placeholder="Digite " labelInfo="3/90" />
-          </Row>
-
-          <Row>
-            <Typography.Highlight>EU</Typography.Highlight>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <Left className="bg-slate-50">
-              <div className="text-subtle">Left</div>
-            </Left>
-            <Right className="bg-black">
-              <div className="text-subtle">Right</div>
-            </Right>
-            <Center className="bg-white">
-              <div className="text-subtle">Center</div>
-            </Center>
-          </Row>
-        </Container>
-        <Container>
-          <Column>
-            <Left className="bg-slate-50">
-              <div className="text-subtle">Left</div>
-            </Left>
-            <Right className="bg-black">
-              <div className="text-subtle">Right</div>
-            </Right>
-            <Center className="bg-base-100">
-              <div className="text-subtle">Center</div>
-            </Center>
-          </Column>
-        </Container>
-        <Container>
-          <Buttons.Confirm $full={true}>Save</Buttons.Confirm>
-          <Buttons.Cancel $full={true}>Cancel</Buttons.Cancel>
-          <Buttons.Fab>
-            <Icons.Add />
-          </Buttons.Fab>
-        </Container>
-      </Wrapper>
+      <M.Content>
+        <M.ButtonCancel>Test</M.ButtonCancel>
+      </M.Content>
     </>
   )
 }
