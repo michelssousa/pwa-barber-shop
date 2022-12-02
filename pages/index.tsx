@@ -12,10 +12,19 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <M.Content>
-        <M.ButtonCancel>Test</M.ButtonCancel>
-        <M.SearchBar />
-      </M.Content>
+      <M.Wrapper>
+        <M.Content>
+          <M.ButtonCancel $full={true}>Test</M.ButtonCancel>
+          <M.Spacer />
+          <M.ButtonConfirm $full={true}>A</M.ButtonConfirm>
+          <M.Spacer />
+          <M.SearchBar />
+        </M.Content>
+        <M.Spacer />
+        <M.ButtonFab>
+          <M.Icons.Add />
+        </M.ButtonFab>
+      </M.Wrapper>
     </>
   )
 }
