@@ -1,7 +1,8 @@
+//#region Imports
+//import { useSession, signOut } from 'next-auth/react'
 import type { NextPage } from 'next'
-
-import { useSession, signOut } from 'next-auth/react'
 import * as M from '@components/index'
+//#endregion
 
 const Home: NextPage = () => {
   // const { data: session } = useSession()
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
     <>
       <M.Content>
         <M.ButtonCancel>Test</M.ButtonCancel>
+        <M.SearchBar />
       </M.Content>
     </>
   )

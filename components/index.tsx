@@ -1,6 +1,5 @@
 import tw from 'tailwind-styled-components'
 import React, { Children } from 'react'
-import type { FC, ReactElement, ReactNode } from 'react'
 
 //#region Actions
 
@@ -225,7 +224,7 @@ export const Search = tw.input`
  w-full 
  rounded-lg 
  pl-10 
- pr-20 
+ pr-5 
  focus:shadow 
  focus:outline-none  
  focus:border-indigo-500 
