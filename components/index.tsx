@@ -1,5 +1,5 @@
 import tw from 'tailwind-styled-components'
-import React, { Children } from 'react'
+import React, { Children, useState } from 'react'
 import type { ReactElement } from 'react'
 
 //#region Actions
@@ -192,53 +192,77 @@ export const Icons = {
  *
  * */
 
-export const FormItem = tw.form`
- relative 
- mb-8
-`
-export const Form = tw.div`
- mt-1
+export const Form = tw.form`
 `
 
-export const Label = tw.label`
- absolute 
- left-0 -top-3.5 
- text-secondary 
- text-sm transition-all 
- peer-placeholder-shown:text-prymary 
- peer-placeholder-shown:text-prymary
- peer-placeholder-shown:top-2 
- peer-focus:-top-3.5 
- peer-focus:text-gray-600 
- peer-focus:text-sm"
+export const Base = tw.input`
+  w-full 
+  input
+  input-bordered
+  text-sm
+`
+const InputBase = tw(Base)`
+  form-control 
+  block
 `
 
-const Base = tw.input`
- w-full 
- h-10 
+type InputBaseProps = {
+  label?: string
+  type?: string
+  id?: string
+  placeholder?: string
+}
+
+export const Input = ({
+  label = 'label',
+  type = 'text',
+  placeholder = 'placeholder',
+}: InputBaseProps) => {
+  return (
+    <div className="form-floating">
+      <InputBase type={type} id="floatingInput" placeholder={placeholder} />
+      <label htmlFor="floatingInput" className="text-primary-focus">
+        {label}
+      </label>
+    </div>
+  )
+}
+
+export const Search = tw(Base)`
+  z-0
+  h-10 
+  w-full
+  pl-8
+  pr-3 
+  focus:shadow
+  focus:outline-none 
+  focus:border-indigo-500 
+  focus:ring-indigo-500 
+  sm:text-sm
+`
+
+type TextAreaBaseProps = {
+  label?: string
+  rows?: number
+}
+
+export const TextAreaBase = tw.textarea`
+ z-0
+ w-full
+ h-auto
  text-gray-900 
  placeholder-transparent 
  border-b-2 
  border-gray-300 
+ pt-5
  peer 
  focus:outline-none 
- focus:border-purple-600"
+ focus:border-primary-focus
 `
-export const Input = tw(Base)`
-`
-export const Search = tw.input`
- z-0
- h-10 
- w-full 
- rounded-lg 
- pl-10 
- pr-5 
- focus:shadow 
- focus:outline-none  
- focus:border-indigo-500 
- focus:ring-indigo-500 
- sm:text-sm
-`
+
+export const TextArea = ({ label, rows = 2 }: TextAreaBaseProps) => {
+  return <></>
+}
 
 //#endregion
 
@@ -262,25 +286,19 @@ export const Spacer = tw.p`
 
 export const Wrapper = tw.div`
     bg-gradient-to-tl 
-    from-gray-200
-    to-gray-200
+    from-gray-50
+    to-gray-50
     w-screen
     h-screen
-    px-4
+    px-1
 `
 
-export const Container = tw.div`
- container
- mx-auto
- bg-black
- my-2
-`
 type ContentProps = {
   children: ReactElement[] | ReactElement | undefined
 }
 export const Content = ({ children, ...rest }: ContentProps) => (
   <div className="relative flex flex-col overflow-hidden" {...rest}>
-    <div className="w-full p-6 m-auto bg-base-100 rounded-md shadow-md border-top lg:max-w-3xl">
+    <div className="w-full p-1 m-auto rounded-md shadow-md border-top lg:max-w-3xl bg-white">
       {children}
     </div>
   </div>
@@ -402,27 +420,38 @@ export const Column = tw.div`
  *
  * */
 
-export const SearchBar = () => (
-  <div className="relative w-full">
-    <div className="absolute top-3 left-3">
-      <Icons.Seach />
+type SearchBarProps = {
+  onChange: (e: any) => void
+  placeholder?: string
+}
+export const SearchBar = ({ onChange, placeholder, ...rest }: SearchBarProps) => {
+  const [value, setValue] = useState('')
+
+  const onClick = () => {
+    onChange('')
+    setValue('')
+  }
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value)
+    onChange(e.target.value)
+  }
+
+  return (
+    <div className="relative w-full">
+      <div className="absolute top-2 left-1">
+        <button className="btn btn-xs btn-ghost ml-0 p-0" onClick={onClick}>
+          {value.length <= 0 && <Icons.Seach />}
+          {value.length !== 0 && <Icons.XMark />}
+        </button>
+      </div>
+      <Search type="search" value={value} placeholder={placeholder} onChange={handleChange} />
     </div>
-    <Search type="search" placeholder="Search anything..." />
-  </div>
-)
+  )
+}
 
 /*
-    <div class="relative w-full">
-      <div class="absolute top-3 left-3">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="z-20 h-5 w-5 text-gray-400 hover:text-gray-500"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-      </div>
-      <input type="search" class="z-0 h-10 w-full rounded-lg pl-10 pr-20 focus:shadow focus:outline-none  focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Search anything..." />
-      <div class="absolute top-1 right-2">
-        <button class="btn btn-sm h-8 w-20 rounded-lg bg-red-300 text-white hover:bg-red-600">Search</button>
-      </div>
-    </div>
-  </div>
-*/
+ */
 //#endregion
 
 //#region Typography
