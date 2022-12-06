@@ -19,6 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <M.Navbar label="Products" goNextPage="login" />
       <M.Wrapper>
         <M.Content>
           <M.ButtonCancel $full={true}>Test</M.ButtonCancel>

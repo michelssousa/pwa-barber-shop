@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { getSession, signIn } from 'next-auth/react'
-import { Navigation, Buttons, Icons, DataInput } from '@components/index'
+import * as M from '@components/index'
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
@@ -28,10 +28,7 @@ function Login() {
 
   return (
     <>
-      <Navigation.NavbarSearch navStart={Navigation.NavStartItem.Arrow}>
-        <DataInput.Search placeholder="Produtos..." onChange={handleSearchChange} />
-      </Navigation.NavbarSearch>
-      <div>{searchValue}</div>
+      <M.Navbar label="Login" />
     </>
   )
 }

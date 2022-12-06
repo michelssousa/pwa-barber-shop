@@ -1,6 +1,7 @@
 import tw from 'tailwind-styled-components'
 import React, { Children, useState } from 'react'
 import type { ReactElement } from 'react'
+import { useRouter } from 'next/router'
 
 //#region Actions
 
@@ -52,6 +53,15 @@ export const ButtonLink = tw.button`
  btn-ghost
  btn-circle
  btn-sm
+`
+
+export const ButtonNavigation = tw.button`
+ btn 
+ btn-circle 
+ btn-ghost
+ btn-xs
+ p-0
+ m-0
 `
 
 //#endregion
@@ -420,6 +430,81 @@ export const Column = tw.div`
  *
  * */
 
+const Menu = () => {
+  return (
+    <div className="dropdown">
+      <label tabIndex={0} className="btn btn-ghost btn-circle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16M4 18h7"
+          />
+        </svg>
+      </label>
+      <ul
+        tabIndex={0}
+        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <a>Homepage</a>
+        </li>
+        <li>
+          <a>Portfolio</a>
+        </li>
+        <li>
+          <a>About</a>
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+const BackPage = () => {
+  const router = useRouter()
+  //return <span onClick={() => router.back()}>Click here to go back</span>
+  return (
+    <ButtonNavigation onClick={() => router.back()}>
+      <Icons.ArrowLeft />
+    </ButtonNavigation>
+  )
+}
+
+type NavbarProps = {
+  menuVisible?: boolean
+  label?: string
+  goNextPage?: string
+}
+
+export const Navbar = ({ menuVisible = false, label = '', goNextPage = '' }: NavbarProps) => {
+  const router = useRouter()
+  return (
+    <div className="navbar bg-base-100">
+      <div className="navbar-start">
+        {menuVisible && <Menu />}
+        {!menuVisible && <BackPage />}
+        <span className=" pl-1 font-bold hover:text-gray-700 focus:text-gray-700">{label}</span>
+      </div>
+      <div className="navbar-end">
+        {goNextPage.length > 0 && (
+          <ButtonNavigation onClick={() => router.push(goNextPage)}>
+            <div className="indicator">
+              <Icons.Add />
+            </div>
+          </ButtonNavigation>
+        )}
+      </div>
+    </div>
+  )
+}
+
 type SearchBarProps = {
   onChange: (e: any) => void
   placeholder?: string
@@ -442,7 +527,7 @@ export const SearchBar = ({ onChange, placeholder, ...rest }: SearchBarProps) =>
       <div className="absolute top-2 left-1">
         <button className="btn btn-xs btn-ghost ml-0 p-0" onClick={onClick}>
           {value.length <= 0 && <Icons.Seach />}
-          {value.length !== 0 && <Icons.XMark />}
+          {value.length !== 0 && <Icons.ArrowLeft />}
         </button>
       </div>
       <Search type="search" value={value} placeholder={placeholder} onChange={handleChange} />
