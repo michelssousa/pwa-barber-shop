@@ -3,7 +3,10 @@
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import * as M from '@components/index'
+
+
 //#endregion
+
 
 const Home: NextPage = () => {
   // const { data: session } = useSession()
@@ -16,6 +19,12 @@ const Home: NextPage = () => {
   const handleNameOnChange = (n: any) => {
     setName(n)
   }
+
+
+
+
+  const [phone, setPhone] = useState('')
+  const handleInput = ({ target: { value } }) => setPhone(value)
 
   return (
     <>
@@ -38,7 +47,11 @@ const Home: NextPage = () => {
         </M.Content>
         <M.Spacer />
         <M.Content>
-          <M.P>{name}</M.P>
+          <M.InputMaskPhone label="Telefone" value={phone} onChange={handleInput} />
+          <M.Spacer />
+          <M.InputMaskDate label="Date" value={phone} onChange={handleInput} />
+          <M.Spacer />
+          <M.P>{phone}</M.P>
         </M.Content>
       </M.Wrapper>
     </>
