@@ -1,7 +1,9 @@
 import tw from 'tailwind-styled-components'
 import React, { Children, useState } from 'react'
+import InputMask from 'react-input-mask'
 import type { ReactElement } from 'react'
 import { useRouter } from 'next/router'
+import * as UT from '@lib/utils'
 
 //#region Actions
 
@@ -235,6 +237,133 @@ export const Input = ({
         {label}
       </label>
     </div>
+  )
+}
+
+const InputMaskBase = (props: any) => {
+  return (
+    <div className="form-floating">
+      <InputMask
+        className="w-full input input-bordered text-sm form-control block"
+        mask={props.mask}
+        placeholder={props.placeholder || props.mask}
+        {...props}
+      />
+      <label htmlFor="floatingInput" className="text-primary-focus">
+        {props.label}
+      </label>
+    </div>
+  )
+}
+
+export const InputMaskPhone = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return (
+    <InputMaskBase
+      label={props.label}
+      mask="+55 (99) 9 9999-9999"
+      {...props}
+      onChange={handleChange}
+    />
+  )
+}
+
+export const InputMaskPin = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return <InputMaskBase label={props.label} mask="9999" {...props} onChange={handleChange} />
+}
+
+export const InputMaskGoogleOTP = (props: any) => {
+  return <InputMaskBase label={props.label} mask="G-999999" {...props} />
+}
+
+export const InputMaskCreditCard = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return (
+    <InputMaskBase
+      label={props.label}
+      mask="9999 9999 9999 9999"
+      {...props}
+      onChange={handleChange}
+    />
+  )
+}
+
+export const InputMaskDate = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return <InputMaskBase label={props.label} mask="99/99/9999" {...props} onChange={handleChange} />
+}
+
+export const InputMaskCPF = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return (
+    <InputMaskBase label={props.label} mask="999.999.999-99" {...props} onChange={handleChange} />
+  )
+}
+
+export const InputMaskCNPJ = (props: any) => {
+  function handleChange(event) {
+    props.onChange({
+      ...event,
+      target: {
+        ...event.target,
+        name,
+        value: UT.onlyNumbers(event.target.value),
+      },
+    })
+  }
+  return (
+    <InputMaskBase
+      label={props.label}
+      mask="99.999.999/9999-99"
+      {...props}
+      onChange={handleChange}
+    />
   )
 }
 
