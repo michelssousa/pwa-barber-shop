@@ -1,4 +1,19 @@
 
+menu.js
+(function(){
+  //variáveis locais
+  //funções locais
+  //não poluem o escopo global
+})();
+
+form.js
+(function(){
+  //variáveis locais
+  //funções locais
+  //não poluem o escopo global
+})();
+
+
 import type { FC, ReactElement, ReactNode } from 'react'kj
 import tw from 'tailwind-styled-components'
 

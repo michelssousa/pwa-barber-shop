@@ -3,10 +3,14 @@
 import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import * as M from '@components/index'
-
+import { util } from '@lib/index'
 
 //#endregion
 
+const d = () => {
+  const d = util.SucessMsgCreated(1, 'A', 'B')
+  alert('')
+}
 
 const Home: NextPage = () => {
   // const { data: session } = useSession()
@@ -19,9 +23,6 @@ const Home: NextPage = () => {
   const handleNameOnChange = (n: any) => {
     setName(n)
   }
-
-
-
 
   const [phone, setPhone] = useState('')
   const handleInput = ({ target: { value } }) => setPhone(value)
