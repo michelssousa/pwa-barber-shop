@@ -3,7 +3,7 @@ import React, { Children, useState } from 'react'
 import InputMask from 'react-input-mask'
 import type { ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import * as UT from '@lib/utils'
+import { util } from '@lib/index'
 
 //#region Actions
 
@@ -263,7 +263,7 @@ export const InputMaskPhone = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }
@@ -284,7 +284,7 @@ export const InputMaskPin = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }
@@ -302,7 +302,7 @@ export const InputMaskCreditCard = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }
@@ -323,7 +323,7 @@ export const InputMaskDate = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }
@@ -337,7 +337,7 @@ export const InputMaskCPF = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }
@@ -353,7 +353,7 @@ export const InputMaskCNPJ = (props: any) => {
       target: {
         ...event.target,
         name,
-        value: UT.onlyNumbers(event.target.value),
+        value: util.onlyNumbers(event.target.value),
       },
     })
   }

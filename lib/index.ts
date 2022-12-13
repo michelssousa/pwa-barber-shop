@@ -1,3 +1,3 @@
-import * as UT from '@lib/utils'
+import * as util from '@lib/utils'
 
-export { UT }
+export { util }
